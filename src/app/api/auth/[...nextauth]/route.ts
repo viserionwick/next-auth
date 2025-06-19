@@ -1,5 +1,5 @@
 // Essentials
-import NextAuth, { Session } from "next-auth";
+import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import Auth0Provider from "next-auth/providers/auth0";
 
@@ -21,13 +21,18 @@ export const authOptions: NextAuthOptions = {
       const roles = profile?.[`${clientEnv.DEPLOYED_URL}/claims/roles`];
       if (profile && roles) {
         token.role = roles?.[0] || "user";
-      }      
+      }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
-        const newSession = session as Session & { role: string };
-        newSession.role = token.role as string || "user";
+        const newSession = session;
+        const newUser = {
+          ...newSession.user,
+          role: token.role as string || "user",
+        }
+
+        newSession.user = newUser;
         return newSession;
       }
       return session;

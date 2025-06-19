@@ -9,12 +9,11 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 const DashboardLayout = async ({ children }: { children: ReactNode }) => {
     const session = await getServerSession(authOptions);
-    const role = session!.role;
     return (
         <div className="l-Dashboard">
             <div className="l-Dashboard--menu">
                 {
-                    hasAccess(role, "read:users")
+                    hasAccess(session!, "read:users")
                     && <Link href="/dashboard/users">Users</Link>
                 }
                 <br />
