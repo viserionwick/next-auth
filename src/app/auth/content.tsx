@@ -13,7 +13,7 @@ const CONTENT: NextPage = () => {
                 <h1 className="text-3xl font-extrabold text-gray-900 mb-8 text-center tracking-tight">Sign in to NextAuth</h1>
                 <button
                     onClick={logIn}
-                    className="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-bold rounded-xl shadow-lg hover:from-blue-700 hover:to-purple-700 transition mb-2 focus:outline-none focus:ring-4 focus:ring-blue-200"
+                    className="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-bold rounded-xl shadow-lg hover:from-blue-700 hover:to-purple-700 transition mb-2 focus:outline-none focus:ring-4 focus:ring-blue-200 cursor-pointer"
                 >
                     Sign in with Auth0
                 </button>
