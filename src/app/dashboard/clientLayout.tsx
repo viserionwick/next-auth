@@ -3,6 +3,7 @@
 // Essentials
 import React, { ReactNode, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 // Utils
 import { hasAccess } from "@/utils/auth/checkAccess";
@@ -17,6 +18,7 @@ interface PROPS {
 
 const DashboardLayoutClient: React.FC<PROPS> = ({ session, children }) => {
     const [openNav, setOpenNav] = useState(false);
+    const pathname = usePathname();
 
     return (
         <div className="l-Dashboard flex flex-col md:flex-row min-h-screen">
@@ -75,7 +77,7 @@ const DashboardLayoutClient: React.FC<PROPS> = ({ session, children }) => {
                         hasAccess(session, "read:users") &&
                         <Link
                             href="/dashboard/users"
-                            className="rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition flex items-center text-sm font-medium"
+                            className={`rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition flex items-center text-sm font-medium ${pathname === "/dashboard/users" ? "bg-gray-200 font-bold text-gray-900" : ""}`}
                             onClick={() => setOpenNav(false)}
                         >
                             Users
@@ -85,7 +87,7 @@ const DashboardLayoutClient: React.FC<PROPS> = ({ session, children }) => {
                         hasAccess(session, "edit:blog_posts") &&
                         <Link
                             href="/dashboard/posts"
-                            className="rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition flex items-center text-sm font-medium"
+                            className={`rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition flex items-center text-sm font-medium ${pathname === "/dashboard/posts" ? "bg-gray-200 font-bold text-gray-900" : ""}`}
                             onClick={() => setOpenNav(false)}
                         >
                             Posts
@@ -95,7 +97,7 @@ const DashboardLayoutClient: React.FC<PROPS> = ({ session, children }) => {
                         hasAccess(session, "read:analytics") &&
                         <Link
                             href="/dashboard/analytics"
-                            className="rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition flex items-center text-sm font-medium"
+                            className={`rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition flex items-center text-sm font-medium ${pathname === "/dashboard/analytics" ? "bg-gray-200 font-bold text-gray-900" : ""}`}
                             onClick={() => setOpenNav(false)}
                         >
                             Analytics
