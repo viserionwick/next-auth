@@ -1,12 +1,13 @@
 // Essentials
 import NextAuth, { Session } from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import Auth0Provider from "next-auth/providers/auth0";
 
 // Utils
 import { serverEnv } from "@/utils/env/serverEnv";
 import { clientEnv } from "@/utils/env/clientEnv";
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
   providers: [
     Auth0Provider({
       clientId: clientEnv.AUTH0_CLIENT_ID,
@@ -17,7 +18,7 @@ const handler = NextAuth({
   session: { strategy: "jwt" },
   callbacks: {
     async jwt({ token, profile }) {
-      const roles = (profile as any)?.["http://localhost:3000/claims/roles"];
+      const roles = profile?.[`${clientEnv.DEPLOYED_URL}/claims/roles`];
       if (profile && roles) {
         token.role = roles?.[0] || "user";
       }      
@@ -32,6 +33,7 @@ const handler = NextAuth({
       return session;
     },
   },
-});
+};
 
+const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
