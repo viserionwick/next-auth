@@ -12,6 +12,9 @@ const DashboardLayout = async ({ children }: { children: ReactNode }) => {
     return (
         <div className="l-Dashboard">
             <div className="l-Dashboard--menu">
+                <Link href="/">Go Back To Webite</Link>
+                <br />
+                <br />
                 {
                     hasAccess(session, "read:users")
                     && <Link href="/dashboard/users">Users</Link>
