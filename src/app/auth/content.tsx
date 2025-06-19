@@ -2,13 +2,15 @@
 
 // Essentials
 import { NextPage } from "next";
-import { signIn } from "next-auth/react";
+
+// Lib
+import logIn from "@/lib/auth/logIn";
 
 const CONTENT: NextPage = () => {
     return (
         <div className="p-Auth">
             <button
-                onClick={() => signIn("auth0")}
+                onClick={logIn}
                 className="hover:cursor-pointer"
             >
                 Sign in with Auth0
