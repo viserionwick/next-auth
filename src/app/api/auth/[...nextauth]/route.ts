@@ -17,7 +17,10 @@ const handler = NextAuth({
   session: { strategy: "jwt" },
   callbacks: {
     async jwt({ token, profile }) {
-      token.role = (profile as any)?.["http://localhost:3000/claims/roles"]?.[0] || "user";
+      const roles = (profile as any)?.["http://localhost:3000/claims/roles"];
+      if (profile && roles) {
+        token.role = roles?.[0] || "user";
+      }      
       return token;
     },
     async session({ session, token }) {

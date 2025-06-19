@@ -9,13 +9,14 @@ import { generateServerSEO } from "@/utils/generateServerSEO";
 
 export async function generateMetadata(): Promise<Metadata> {
   return await generateServerSEO({
-    description: "Welcome to NextAuth.",
-    route: "/",
+    title: "Users",
+    description: "All the users.",
+    route: "/users"
   });
 }
 
-const ROOT = async () => {
+const USERS = async () => {
   return <CONTENT />
 }
 
-export default ROOT;
+export default USERS;

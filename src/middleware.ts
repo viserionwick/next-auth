@@ -11,6 +11,7 @@ import authRedirect from "./utils/middlewares/api/auth/authRedirect";
 
 // Utils
 import { checkBot } from "./utils/checkBot";
+import protectedRedirect from "./utils/middlewares/api/auth/protectedRedirect";
 
 const executeMiddlewares: ExecuteMiddlewares = async (req: NextRequest, allMiddlewares: Middleware[]) => {
     if (allMiddlewares.length) {
@@ -26,9 +27,6 @@ export const middleware = async (req: NextRequest) => {
     const pathname = req.nextUrl.pathname;
     const isBot = await checkBot();
 
-    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-    console.log("token?.role: ", token?.role);
-
     // Middlewares for: APIs.
     if (pathname.startsWith("/api")) {
         const response = await executeMiddlewares(req, [
@@ -37,6 +35,7 @@ export const middleware = async (req: NextRequest) => {
 
         if (response) return response;
     }
+
 
     // Set session to be guest if client is a search engine bot.
     if (isBot) {
@@ -60,16 +59,29 @@ export const middleware = async (req: NextRequest) => {
             const userToRedirect = await authRedirect(req, "/");
             if (userToRedirect) return userToRedirect;
         }
-        if (pathname === "/") {
+        if (pathname.startsWith("/") && !pathname.startsWith("/auth")) {
             const userToRedirect = await authRedirect(req, "/auth", false);
             if (userToRedirect) return userToRedirect;
         }
     }
+
+    // Protected Routes.
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+    console.log("token?.role: ", token?.role);
+    
+    if (pathname.startsWith("/dashboard")) {
+        if (!token || (token.role === "user" || undefined)) return await protectedRedirect(req, "/");
+        // Block routes for role: Editor.
+        if (token.role === "editor" && pathname.startsWith("/dashboard/users")){
+            return await protectedRedirect(req, "/dashboard");
+        }
+    }
+
     return NextResponse.next();
 }
 
 export const config = {
     matcher: [
-        "/:path*"
+        "/((?!api|_next/static|_next/image|favicon.ico|robots.txt|images|fonts).*)"
     ],
 }

@@ -16,8 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-const SIGNUP = async () => {
+const SIGNIN = async () => {
   return <CONTENT />
 }
 
-export default SIGNUP;
+export default SIGNIN;
