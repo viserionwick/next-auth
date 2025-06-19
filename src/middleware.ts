@@ -66,15 +66,9 @@ export const middleware = async (req: NextRequest) => {
     }
 
     // Protected Routes.
-    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-    console.log("token?.role: ", token?.role);
-    
-    if (pathname.startsWith("/dashboard")) {
-        if (!token || (token.role === "user" || undefined)) return await protectedRedirect(req, "/");
-        // Block routes for role: Editor.
-        if (token.role === "editor" && pathname.startsWith("/dashboard/users")){
-            return await protectedRedirect(req, "/dashboard");
-        }
+    const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });    
+    if (pathname.startsWith("/dashboard") && (!token || (token.role === "user" || undefined))) { // Redirect unauthorized users to home.
+        return await protectedRedirect(req, "/");
     }
 
     return NextResponse.next();

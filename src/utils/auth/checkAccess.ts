@@ -9,6 +9,7 @@ export const hasAccess = (session: Session, section: string): boolean => {
         admin: [
             "read:dashboard",
             "read:users",
+            "read:analytics",
             "edit:users",
             "edit:blog_posts",
             "assign:roles"
