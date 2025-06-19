@@ -14,6 +14,12 @@ export const hasAccess = (session: Session, section: string): boolean => {
             "edit:blog_posts",
             "assign:roles"
         ],
+        moderator: [
+            "read:dashboard",
+            "read:users",
+            "edit:users",
+            "assign:roles"
+        ],
         editor: [
             "edit:blog_posts",
             "read:dashboard",

@@ -22,6 +22,7 @@ const CONTENT: NextPage = () => {
                 <h2 className="text-xl font-bold text-blue-700 mb-4">Test users with roles</h2>
                 <ul className="mb-4 space-y-1">
                     <li className="flex items-center gap-2"><span className="font-semibold text-gray-800">Admin:</span> <span className="font-mono text-gray-600">admin@email.com</span></li>
+                    <li className="flex items-center gap-2"><span className="font-semibold text-gray-800">Moderator:</span> <span className="font-mono text-gray-600">moderator@email.com</span></li>
                     <li className="flex items-center gap-2"><span className="font-semibold text-gray-800">Editor:</span> <span className="font-mono text-gray-600">editor@email.com</span></li>
                     <li className="flex items-center gap-2"><span className="font-semibold text-gray-800">User:</span> <span className="font-mono text-gray-600">user@email.com</span></li>
                 </ul>

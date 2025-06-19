@@ -9,18 +9,18 @@ import { Session } from "next-auth";
 // Utils
 import { hasAccess } from "@/utils/auth/checkAccess";
 
-interface PROPS {
-    session: Session;
-}
-
 const users = [
     { name: "Alice Smith", email: "alice@example.com" },
     { name: "Bob Johnson", email: "bob@example.com" },
     { name: "Charlie Brown", email: "charlie@example.com" }
 ];
 
+interface PROPS {
+    session: Session;
+}
+
 const CONTENT: NextPage<PROPS> = ({ session }) => {
-    const showAction = hasAccess(session, "assign:roles");
+    const showActionButtons = hasAccess(session, "assign:roles");
 
     return (
         <div>
@@ -43,7 +43,7 @@ const CONTENT: NextPage<PROPS> = ({ session }) => {
                             </p>
                         </div>
                         {
-                            showAction &&
+                            showActionButtons &&
                             <button className="mt-6 px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow hover:bg-blue-700 transition self-end cursor-pointer">
                                 Assign Role
                             </button>

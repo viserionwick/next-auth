@@ -3,6 +3,12 @@
 // Essentials
 import { NextPage } from "next";
 
+// Types
+import { Session } from "next-auth";
+
+// Utils
+import { hasAccess } from "@/utils/auth/checkAccess";
+
 const dummyPosts = [
     {
         title: "How to Use Next.js with Auth0",
@@ -24,10 +30,20 @@ const dummyPosts = [
     },
 ];
 
-const CONTENT: NextPage = () => {
+
+interface PROPS {
+    session: Session;
+}
+
+const CONTENT: NextPage<PROPS> = ({ session }) => {
+    const showEditButton = hasAccess(session, "edit:blog_posts");
+
     return (
         <div>
             <h1 className="text-3xl font-bold mb-10 text-center text-gray-900 tracking-tight drop-shadow-sm">Blog Posts</h1>
+            <div className="mb-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded text-left">
+                Only roles with <span className="font-semibold">"edit:blog_posts"</span> permission (Admin, Editor) can see the <span className="font-semibold">"Edit"</span> buttons.
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
                 {dummyPosts.map((post, index) => (
                     <div
@@ -45,9 +61,13 @@ const CONTENT: NextPage = () => {
                             <span className="font-medium text-gray-700">By {post.author}</span>
                             <span className="font-mono">{post.date}</span>
                         </div>
-                        <button className="mt-6 px-4 py-2 bg-yellow-400 text-gray-900 font-semibold rounded-lg shadow hover:bg-yellow-500 transition self-end cursor-pointer">
-                            Edit
-                        </button>
+                        {
+                            showEditButton &&
+                            <button className="mt-6 px-4 py-2 bg-yellow-400 text-gray-900 font-semibold rounded-lg shadow hover:bg-yellow-500 transition self-end cursor-pointer">
+                                Edit
+                            </button>
+                        }
+
                     </div>
                 ))}
             </div>
