@@ -9,14 +9,15 @@ import { generateServerSEO } from "@/utils/generateServerSEO";
 
 export async function generateMetadata(): Promise<Metadata> {
   return await generateServerSEO({
-    title: "Dashboard",
-    description: "Welcome to dashboard.",
-    route: "/",
+    title: "Sign In",
+    description: "Sign In with Auth0",
+    keywords: ["auth0"],
+    route: "/auth"
   });
 }
 
-const ROOT = async () => {
+const SIGNUP = async () => {
   return <CONTENT />
 }
 
-export default ROOT;
+export default SIGNUP;

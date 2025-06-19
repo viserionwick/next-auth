@@ -17,20 +17,7 @@ const handler = NextAuth({
   session: { strategy: "jwt" },
   callbacks: {
     async jwt({ token, profile }) {
-      const auth0Profile: {
-        "https://dev-yrfuxkn3fz3sw3pz.eu.auth0.com/claims/roles": string[],
-        nickname: string,
-        name: string,
-        picture: string,
-        updated_at: string,
-        email: string,
-        email_verified: boolean,
-        iss: string,
-        aud: string,
-        sub: string,
-      } | undefined = profile as any;
-
-      token.role = auth0Profile?.["https://dev-yrfuxkn3fz3sw3pz.eu.auth0.com/claims/roles"]?.[0] || "user";
+      token.role = (profile as any)?.["http://localhost:3000/claims/roles"]?.[0] || "user";
       return token;
     },
     async session({ session, token }) {
