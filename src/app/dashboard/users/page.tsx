@@ -7,18 +7,19 @@ import CONTENT from "./content";
 
 // Utils
 import { generateServerSEO } from "@/utils/generateServerSEO";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function generateMetadata(): Promise<Metadata> {
   return await generateServerSEO({
-    description: "Welcome to NextAuth.",
-    route: "/",
+    title: "Users",
+    description: "All the users.",
+    route: "/users"
   });
 }
 
-const ROOT = async () => {
+const USERS = async () => {
   const session = await getServerSession(authOptions) as NonNullable<Session>;
-  return <CONTENT session={session} />
+  return <CONTENT session={session}/>
 }
 
-export default ROOT;
+export default USERS;
