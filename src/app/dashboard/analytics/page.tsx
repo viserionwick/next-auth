@@ -8,7 +8,7 @@ import CONTENT from "./content";
 
 // Utils
 import { generateServerSEO } from "@/utils/generateServerSEO";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth/nextauth";
 import { hasAccess } from "@/utils/auth/checkAccess";
 
 export async function generateMetadata(): Promise<Metadata> {

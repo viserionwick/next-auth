@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 import { getServerSession, Session } from "next-auth";
 
 // Utils
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth/nextauth";
 
 // Components
 import DashboardLayoutClient from "./clientLayout";
