@@ -84,7 +84,7 @@ const DashboardLayoutClient: React.FC<PROPS> = ({ session, children }) => {
                         </Link>
                     }
                     {
-                        hasAccess(session, "edit:blog_posts") &&
+                        hasAccess(session, "read:blog_posts") &&
                         <Link
                             href="/dashboard/posts"
                             className={`rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition flex items-center text-sm font-medium ${pathname === "/dashboard/posts" ? "bg-gray-200 font-bold text-gray-900" : ""}`}
@@ -111,7 +111,7 @@ const DashboardLayoutClient: React.FC<PROPS> = ({ session, children }) => {
                 <div
                     className="fixed inset-0 bg-black/30 z-30 md:hidden"
                     onClick={() => setOpenNav(false)}
-                ></div>
+                />
             }
 
             <main className="l-Dashboard--content flex-1 px-4 py-6 md:pl-72 md:pr-12 md:py-10 mt-16 md:mt-0" >
