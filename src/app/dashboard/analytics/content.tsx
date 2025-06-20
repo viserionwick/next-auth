@@ -35,7 +35,7 @@ const CONTENT: NextPage = () => {
         <div>
             <h1 className="text-3xl font-bold mb-10 text-center text-gray-900 tracking-tight drop-shadow-sm">Analytics</h1>
             <div className="mb-4 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded">
-                Only roles with <span className="font-semibold">"read:analytics"</span> permission (Admin) can access this page.
+                Only roles with <span className="font-semibold">&quot;read:analytics&quot;</span> permission (Admin) can access this page.
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 {dummyAnalytics.map((stat, index) => (

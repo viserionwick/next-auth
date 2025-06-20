@@ -42,7 +42,7 @@ const CONTENT: NextPage<PROPS> = ({ session }) => {
         <div>
             <h1 className="text-3xl font-bold mb-10 text-center text-gray-900 tracking-tight drop-shadow-sm">Blog Posts</h1>
             <div className="mb-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded text-left">
-                Only roles with <span className="font-semibold">"edit:blog_posts"</span> permission (Admin, Editor) can see the <span className="font-semibold">"Edit"</span> buttons.
+                Only roles with <span className="font-semibold">&quot;edit:blog_posts&quot;</span> permission (Admin, Editor) can see the <span className="font-semibold">&quot;Edit&quot;</span> buttons.
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
                 {dummyPosts.map((post, index) => (

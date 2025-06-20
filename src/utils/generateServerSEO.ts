@@ -7,7 +7,6 @@ interface GenerateServerSEOProps {
     description?: string;
     keywords?: string[];
     route?: string;
-    searchParams?: any;
     disableIndexing?: boolean;
 }
 

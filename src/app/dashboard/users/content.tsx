@@ -26,7 +26,7 @@ const CONTENT: NextPage<PROPS> = ({ session }) => {
         <div>
             <h1 className="text-3xl font-bold mb-10 text-center text-gray-900 tracking-tight drop-shadow-sm">Users</h1>
             <div className="mb-8 p-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded text-left">
-                Only roles with <span className="font-semibold">"assign:roles"</span> permission (Admin, Moderator) can see the <span className="font-semibold">"Assign Role"</span> buttons.
+                Only roles with <span className="font-semibold">&quot;assign:roles&quot;</span> permission (Admin, Moderator) can see the <span className="font-semibold">&quot;Assign Role&quot;</span> buttons.
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {users.map((user, index) => (

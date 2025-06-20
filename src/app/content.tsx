@@ -62,7 +62,7 @@ const CONTENT: NextPage<PROPS> = ({ session }) => {
                 </button>
             </header>
             <div className="mb-10 px-8 py-4 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 rounded text-left max-w-5xl mx-auto">
-                Only roles with <span className="font-semibold">"read:dashboard"</span> permission (Admin, Moderator, Editor) can see the <span className="font-semibold">"Dashboard"</span> button.
+                Only roles with <span className="font-semibold">&quot;read:dashboard&quot;</span> permission (Admin, Moderator, Editor) can see the <span className="font-semibold">&quot;Dashboard&quot;</span> button.
             </div>
             <h1 className="text-4xl font-extrabold mb-10 text-center text-gray-900 tracking-tight drop-shadow-sm">Latest Blog Posts</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
