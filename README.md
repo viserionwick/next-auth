@@ -2,7 +2,7 @@
 
 A modern Next.js authentication and role-based access control starter, featuring Auth0, NextAuth.js, JWT, and best practices for security, SEO, and environment validation.
 
-**🌐 [Live Demo](https://next-auth-ruddy-beta.vercel.app/)**
+**🌐 [Live Demo](https://next-auth-two-jet.vercel.app/)**
 
 ## 🧱 Built With
 
@@ -31,7 +31,7 @@ A custom trigger is set up in Auth0 for the post-login flow. The action adds a c
 
 ```js
 exports.onExecutePostLogin = async (event, api) => {
-  const namespace = 'https://next-auth-ruddy-beta.vercel.app/claims';
+  const namespace = 'https://next-auth-two-jet.vercel.app/claims';
 
   const roles = event.authorization?.roles || [];
 
